@@ -24,44 +24,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
--- Create tables for plugins and opts --
-local opts = {}
-
-
-
 -- Load Lazy with Plugins --
 require("lazy").setup("plugins")
-
--- Other Plugin Setup --
--- Catppuccin --
-require("catppuccin").setup {
-  transparent_background = false,
-  color_overrides = {
-    mocha = {
-      base = "#14122a"
-    }
-  }
-
-}
-vim.cmd.colorscheme "catppuccin-mocha"
-
--- Telescope --
-local builtin  = require("telescope.builtin")
-map("n", "<leader>ff", builtin.find_files, {})
-map("n", "<leader>fg", builtin.live_grep, {})
-
-map("n", "<C-n>", ":Neotree toggle filesystem left<CR>")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
