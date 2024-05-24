@@ -3,7 +3,7 @@ return {
   name = "catppuccin", 
   priority = 1000,
   config = function()
-    
+
     require("catppuccin").setup({
       transparent_background = false,
 
@@ -44,7 +44,7 @@ return {
           -- which_key = true
         }
       },
-      
+
       color_overrides = {
         all = {
           text = "#ffffff"
