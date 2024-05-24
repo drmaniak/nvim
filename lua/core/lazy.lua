@@ -18,6 +18,9 @@ if not ok then
   return
 end
 
+-- Lazy needs leader mapped --
+require("helpers.keys").set_leader(" ")
+
 -- Setup Lazy --
 lazy.setup("plugins")
 
