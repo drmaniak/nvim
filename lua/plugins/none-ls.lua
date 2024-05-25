@@ -14,9 +14,12 @@ return {
         -- Python linter + formatter --
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort,
-        null_ls.builtins.diagnostics.pylint.with({
+        null_ls.builtins.diagnostics.mypy.with({
           diagnostic_config = { underline = true, virtual_text = true, signs = true },
         }),
+        -- null_ls.builtins.diagnostics.pylint.with({
+        --   diagnostic_config = { underline = true, virtual_text = true, signs = true },
+        -- }),
         -- null_ls.builtins.formatting
       },
     })
