@@ -47,7 +47,7 @@ return {
 
       color_overrides = {
         all = {
-          text = "#ffffff"
+          text = "#ffffff",
         },
         mocha = {
           base = "#14122a"

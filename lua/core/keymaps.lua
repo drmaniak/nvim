@@ -49,3 +49,6 @@ map("n", "<A-7>", ":BufferGoto 7<CR>", "Move to Buffer 7", { noremap = true})
 map("n", "<A-8>", ":BufferGoto 8<CR>", "Move to Buffer 8", { noremap = true})
 map("n", "<A-9>", ":BufferGoto 9<CR>", "Move to Buffer 9", { noremap = true})
 map("n", "<A-0>", ":BufferLast<CR>", "Move to Last Buffer", { noremap = true})
+
+-- Colorscheme (via Huez) --
+map("n", "<leader>th", ":Huez<CR>", "Colorscheme Picker")
