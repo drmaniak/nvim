@@ -3,7 +3,6 @@ return {
   dependencies = {
     "kylechui/nvim-surround",
     "folke/which-key.nvim",
-    asdf
   },
   
   config = function()

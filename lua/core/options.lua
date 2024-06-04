@@ -21,5 +21,3 @@ vim.opt.smartcase = true
 vim.opt.signcolumn  = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
-

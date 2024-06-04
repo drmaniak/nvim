@@ -5,62 +5,85 @@ local capabilities = require("configs.mylspconfig").capabilities
 
 -- Define servers --
 local servers = {
-  "lua_ls",
-  "basedpyright",
-  "bashls",
+	"lua_ls",
+	"bashls",
+	"pyright",
+  "marksman",
+}
+
+local tools = {
+	"black",
+	"debugpy",
+	"flake8",
+	"isort",
+	"mypy",
+	"pylint",
 }
 
 return {
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = servers, -- defined above
+	{
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup({
+        PATH = "append",
       })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      local lspconfig = require("lspconfig")
-      -- Loop through all servers and set up
-      for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup({
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = servers, -- defined above
+			})
+		end,
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = tools,
+			})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
+			-- Loop through all servers and set up
+			for _, lsp in ipairs(servers) do
+				lspconfig[lsp].setup({
 
-          on_attach = on_attach,
-          on_init = on_init,
-          capabilities = capabilities,
-        })
-      end
+					on_attach = on_attach,
+					on_init = on_init,
+					capabilities = capabilities,
+				})
+			end
 
-      -- Setup lua_ls separately
-      lspconfig["lua_ls"].setup({
-        settings = {
-          Lua = {
-            runtime = {
-              version = "LuaJIT",
-            },
-            diagnostics = {
-              globals = {
-                "vim",
-                "require",
-              },
-            },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file("", true),
-            },
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-      })
-    end,
-  },
+			-- Setup lua_ls separately
+			lspconfig["lua_ls"].setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						runtime = {
+							version = "LuaJIT",
+						},
+						diagnostics = {
+							globals = {
+								"vim",
+								"require",
+							},
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+						telemetry = {
+							enable = false,
+						},
+					},
+				},
+			})
+		end,
+	},
 }
