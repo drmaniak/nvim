@@ -21,9 +21,9 @@ return {
 					extra_args = { "--show-column-numbers", "--ignore-missing-imports" },
 					diagnostic_config = { underline = true, virtual_text = true, signs = true },
 				}),
-				-- null_ls.builtins.diagnostics.pylint.with({
-				--   diagnostic_config = { underline = true, virtual_text = true, signs = true },
-				-- }),
+				null_ls.builtins.diagnostics.pylint.with({
+				  diagnostic_config = { underline = true, virtual_text = true, signs = true },
+				}),
 
 				-- Markdown Linter
 				null_ls.builtins.diagnostics.markdownlint.with({
