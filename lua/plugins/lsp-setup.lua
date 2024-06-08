@@ -18,6 +18,8 @@ local tools = {
 	"isort",
 	"mypy",
 	"pylint",
+  "ruff",
+  "pydocstyle"
 }
 
 return {
