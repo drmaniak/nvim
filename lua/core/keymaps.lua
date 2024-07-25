@@ -24,11 +24,12 @@ map("n", "<C-l>", ":wincmd l<CR>", "Move window right")
 
 -- Telescope --
 local telescope_builtin = require("telescope.builtin")
-map("n", "<leader>ff", telescope_builtin.find_files, "Find File")
-map("n", "<leader>fg", telescope_builtin.live_grep, "Live Grep")
+map("n", "<leader>T", ":Telescope<CR>", "Open Telescope Main")
+map("n", "<leader>ff", telescope_builtin.find_files, "Telescope - Find File")
+map("n", "<leader>fg", telescope_builtin.live_grep, "Telescope - Live Grep")
+map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Telescope - Recent Files")
+map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Telescope - Frecent Files")
 map("n", "<leader>gs", telescope_builtin.git_status, "Git Status")
-map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Recent Files")
-map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Frecent Files")
 -- map("n", "<leader>fr", require("telescope").extensions.frecency, "Recent Files")
 -- map("n", "leader>fh", telescope.extensions.recent_files.pick(), "Recent Files")
 
@@ -38,7 +39,7 @@ map("n", "<C-n>", ":Neotree toggle filesystem reveal left<CR>", "Neo-Tree Toggle
 -- Buffer Movement --
 map("n", "<A-,>", ":BufferPrevious<CR>", "Previous Buffer", { noremap = true })
 map("n", "<A-.>", ":BufferNext<CR>", "Next Buffer", { noremap = true })
-map("n", "<leader>x", ":BufferClose<CR>", "Close Buffer", { noremap = true })
+-- map("n", "<leader>x", ":BufferClose<CR>", "Close Buffer", { noremap = true })
 
 map("n", "<A-<>", ":BufferMovePrevious<CR>", "Move Buffer Previous", { noremap = true })
 map("n", "<A->>", ":BufferMoveNext<CR>", "Move Buffer Next", { noremap = true })

@@ -53,7 +53,7 @@ M.capabilities.textDocument.completion.completionItem = {
 		},
 	},
 }
-M.capabilities = vim.tbl_extend("force", M.capabilities, require('cmp_nvim_lsp').default_capabilities())
+M.capabilities = vim.tbl_extend("force", M.capabilities, require("cmp_nvim_lsp").default_capabilities())
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 --
 -- M.capabilities = capabilities
