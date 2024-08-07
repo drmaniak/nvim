@@ -12,6 +12,7 @@ return {
 			-- python = { "ruff", "mypy", "pydocstyle" },
 			python = { "ruff", "mypy" },
 			markdown = { "markdownlint" },
+			html = { "htmlhint" },
 		}
 
 		-- Autocommands for linting

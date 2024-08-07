@@ -23,6 +23,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				bash = { "beautysh" },
+				html = { "prettier" },
 			},
 
 			-- Specify format on save

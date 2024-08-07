@@ -8,7 +8,8 @@ local servers = {
 	"lua_ls",
 	"bashls",
 	"pyright",
-  "marksman",
+	"marksman",
+	"html",
 }
 
 local tools = {
@@ -18,8 +19,9 @@ local tools = {
 	"isort",
 	"mypy",
 	"pylint",
-  "ruff",
-  "pydocstyle"
+	"ruff",
+	"pydocstyle",
+	"htmlhint",
 }
 
 return {
@@ -27,8 +29,8 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
-        PATH = "append",
-      })
+				PATH = "append",
+			})
 		end,
 	},
 	{
