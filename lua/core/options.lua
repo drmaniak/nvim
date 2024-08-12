@@ -11,6 +11,7 @@ vim.cmd("set shiftwidth=2")
 -------------
 
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = "unnamedplus"
@@ -18,6 +19,6 @@ vim.opt.breakindent = true
 vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.signcolumn  = "yes"
+vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
