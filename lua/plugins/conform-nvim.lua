@@ -24,6 +24,7 @@ return {
 				markdown = { "prettier" },
 				bash = { "beautysh" },
 				html = { "prettier" },
+				sql = { "sqlfluff", "sql_formatter" },
 			},
 
 			-- Specify format on save

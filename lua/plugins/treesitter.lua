@@ -17,6 +17,7 @@ return {
 				"html",
 				"python",
 				"go",
+				"sql",
 			},
 			auto_install = true,
 			sync_install = false,

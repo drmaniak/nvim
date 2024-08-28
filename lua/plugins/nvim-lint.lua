@@ -13,6 +13,7 @@ return {
 			python = { "ruff", "mypy" },
 			markdown = { "markdownlint" },
 			html = { "htmlhint" },
+			-- sql = { "sqlfluff" },
 		}
 
 		-- Autocommands for linting
