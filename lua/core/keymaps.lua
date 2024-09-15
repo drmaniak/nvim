@@ -11,6 +11,7 @@ local map = require("helpers.keys").map -- map signature (mode:str, lhs:str, rhs
 -- Vim commands --
 map("i", "kj", "<ESC>", "", { noremap = true })
 map("i", "jk", "<ESC>", "", { noremap = true })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", "Clear highlights after searching")
 
 ---------------------
 -- Plugin controls --
@@ -27,11 +28,12 @@ local telescope_builtin = require("telescope.builtin")
 map("n", "<leader>T", ":Telescope<CR>", "Open Telescope Main")
 map("n", "<leader>ff", telescope_builtin.find_files, "Telescope - Find File")
 map("n", "<leader>fg", telescope_builtin.live_grep, "Telescope - Live Grep")
+map("n", "<leader>fd", telescope_builtin.diagnostics, "Telescope - Diagnostics")
+map("n", "<leader><leader>", telescope_builtin.buffers, "Telescope - Existing Buffers")
 map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Telescope - Recent Files")
 map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Telescope - Frecent Files")
 map("n", "<leader>gs", telescope_builtin.git_status, "Git Status")
--- map("n", "<leader>fr", require("telescope").extensions.frecency, "Recent Files")
--- map("n", "leader>fh", telescope.extensions.recent_files.pick(), "Recent Files")
+map("n", "<leader>ft", "<cmd>TodoTelescope<CR>", "Telescope - TODO list")
 
 -- Neo-Tree --
 map("n", "<C-n>", ":Neotree toggle filesystem reveal left<CR>", "Neo-Tree Toggle")
