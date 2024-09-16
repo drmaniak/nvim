@@ -1,5 +1,14 @@
 return {
-  -- Base Telescope Plugin --
+	{
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			-- calling `setup` is optional for customization
+			require("fzf-lua").setup({})
+		end,
+	},
+	-- Base Telescope Plugin --
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.6",
@@ -15,7 +24,7 @@ return {
 			})
 		end,
 	},
-  -- UI Select for Code Actions --
+	-- UI Select for Code Actions --
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		config = function()
@@ -29,17 +38,17 @@ return {
 			require("telescope").load_extension("ui-select")
 		end,
 	},
-  -- Recent Files --
+	-- Recent Files --
 	{
 		"smartpde/telescope-recent-files",
 		config = function()
 			require("telescope").load_extension("recent_files")
 		end,
 	},
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    config = function()
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
 			require("telescope").load_extension("frecency")
-    end
-  }
+		end,
+	},
 }

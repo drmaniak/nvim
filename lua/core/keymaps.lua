@@ -33,7 +33,7 @@ map("n", "<leader><leader>", telescope_builtin.buffers, "Telescope - Existing Bu
 map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Telescope - Recent Files")
 map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Telescope - Frecent Files")
 map("n", "<leader>gs", telescope_builtin.git_status, "Git Status")
-map("n", "<leader>ft", "<cmd>TodoTelescope<CR>", "Telescope - TODO list")
+map("n", "<leader>ft", "<cmd>TodoTelescope <CR>", "Telescope - TODO list")
 
 -- Neo-Tree --
 map("n", "<C-n>", ":Neotree toggle filesystem reveal left<CR>", "Neo-Tree Toggle")
@@ -59,3 +59,13 @@ map("n", "<A-0>", ":BufferLast<CR>", "Move to Last Buffer", { noremap = true })
 
 -- Colorscheme (via Huez) --
 map("n", "<leader>th", ":Huez<CR>", "Colorscheme Picker")
+
+-- Window Resizing (via window-nvim)
+local function cmd(command)
+	return table.concat({ "<cmd>", command, "<CR>" })
+end
+
+map("n", "<C-w>m", cmd("WindowsMaximize"), "Maximize current window")
+map("n", "<C-w>mv", cmd("WindowsMaximizeVertically"), "Maximize current window vertically")
+map("n", "<C-w>mh", cmd("WindowsMaximizeHorizontally"), "Maximize current window horizontally")
+map("n", "<C-w>=", cmd("WindowsEqualize"), "Equalize all windows")
