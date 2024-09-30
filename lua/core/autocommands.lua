@@ -36,3 +36,11 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		vim.opt_local.cursorline = false
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = cursorline_augroup,
+	pattern = "TelescopePrompt*",
+	callback = function()
+		vim.opt_local.cursorline = false
+	end,
+})
