@@ -12,8 +12,10 @@ local map = require("helpers.keys").map -- map signature (mode:str, lhs:str, rhs
 map("i", "kj", "<ESC>", "", { noremap = true })
 map("i", "jk", "<ESC>", "", { noremap = true })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", "Clear highlights after searching")
-map({ "n", "v" }, "x", "_x", "Delete character and save to _x clipboard")
-map({ "n", "v" }, "d", "_d", "Delete selection and save to _d clipboard")
+map({ "n", "v" }, "x", '"_x', "Delete character and save to _x clipboard")
+map({ "n", "v" }, "d", '"_d', "Delete selection and save to _d clipboard")
+map({ "n", "v" }, "p", '"_dP', "Paste without overwriting clipboard")
+map({ "n", "v" }, "P", '"_dP', "Paste without overwriting clipboard")
 
 ---------------------
 -- Plugin controls --
