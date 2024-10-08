@@ -12,10 +12,8 @@ local map = require("helpers.keys").map -- map signature (mode:str, lhs:str, rhs
 map("i", "kj", "<ESC>", "", { noremap = true })
 map("i", "jk", "<ESC>", "", { noremap = true })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", "Clear highlights after searching")
-map({ "n", "v" }, "x", '"_x', "Delete character and save to _x clipboard")
-map({ "n", "v" }, "d", '"_d', "Delete selection and save to _d clipboard")
-map({ "n", "v" }, "p", '"_dP', "Paste without overwriting clipboard")
-map({ "n", "v" }, "P", '"_dP', "Paste without overwriting clipboard")
+map({ "n", "v" }, "x", '"_x', "Delete character and send to black hole register")
+map({ "n", "v" }, "c", '"_c', "Change selection and send to black hole register")
 
 ---------------------
 -- Plugin controls --
@@ -38,6 +36,7 @@ map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Teles
 map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Telescope - Frecent Files")
 map("n", "<leader>gs", telescope_builtin.git_status, "Git Status")
 map("n", "<leader>ft", "<cmd>TodoTelescope <CR>", "Telescope - TODO list")
+map("n", "<leader>fk", telescope_builtin.keymaps, "Telescope - Keymaps")
 
 -- Treesitter Textobjects Movement --
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
