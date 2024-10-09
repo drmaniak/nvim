@@ -5,12 +5,8 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			term_colors = false,
-			transparent_background = false,
-			dim_inactive = {
-				enabled = true,
-				shade = "light",
-				percentage = 0.03,
-			},
+			transparent_background = true,
+			-- Removed dim_inactive to ensure transparent_background works correctly
 
 			opts = {
 
@@ -47,7 +43,7 @@ return {
 					telescope = true,
 					treesitter = true,
 					treesitter_context = true,
-					-- which_key = true
+					which_key = true,
 				},
 			},
 
@@ -56,7 +52,7 @@ return {
 					text = "#ffffff",
 				},
 				mocha = {
-					base = "#14122a",
+					-- base = "#14122a",
 				},
 				frappe = {},
 				macchiato = {},
@@ -67,8 +63,8 @@ return {
 				return {
 					WinSeparator = { fg = colors.lavender, bg = colors.none },
 					NeoTreeWinSeparator = { fg = colors.lavender, bg = colors.none },
-					NeoTreeNormal = { bg = "#15132f" },
-					NeoTreeNormalNC = { bg = "#15132f" },
+					-- NeoTreeNormal = { bg = "#15132f" },
+					-- NeoTreeNormalNC = { bg = "#15132f" },
 				}
 			end,
 		})
