@@ -25,6 +25,7 @@ return {
 				bash = { "beautysh" },
 				html = { "prettier" },
 				sql = { "sqlfluff", "sql_formatter" },
+				yaml = { "prettier" },
 			},
 
 			-- Specify format on save

@@ -10,9 +10,11 @@ return {
 		-- Specify the linters by file type
 		lint.linters_by_ft = {
 			-- python = { "ruff", "mypy", "pydocstyle" },
-			python = { "ruff", "mypy" },
+			-- python = { "ruff", "mypy" },
+			python = { "ruff" },
 			markdown = { "markdownlint" },
 			html = { "htmlhint" },
+			yaml = { "actionlint" },
 			-- sql = { "sqlfluff" },
 		}
 

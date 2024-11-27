@@ -17,6 +17,12 @@ M.on_attach = function(client, bufnr)
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
 	map("n", "K", vim.lsp.buf.hover, opts("Show hover hint"))
 	map("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP Rename variable"))
+	map(
+		"n",
+		"<leader>d",
+		vim.diagnostic.open_float,
+		{ noremap = true, silent = true, desc = "Show diagnostic info in a floating window." }
+	)
 
 	map("n", "<leader>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))

@@ -115,20 +115,78 @@ return {
 			separator = { left = "", right = "" },
 		}
 
+		-- local function getLspName()
+		-- 	local msg = "No Active Lsp"
+		-- 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+		-- 	-- local clients = vim.lsp.get_active_clients()
+		-- 	local clients = vim.lsp.get_clients()
+		-- 	if next(clients) == nil then
+		-- 		return msdg
+		-- 	end
+		-- 	for _, client in ipairs(clients) do
+		-- 		local filetypes = client.config.filetypes
+		-- 		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+		-- 			return "  " .. client.name
+		-- 		end
+		-- 	end
+		-- 	return "  " .. msg
+		-- end
+
 		local function getLspName()
-			local msg = "No Active Lsp"
-			local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-			local clients = vim.lsp.get_active_clients()
+			local buf_ft = vim.bo.filetype
+			local buf_client_names = {}
+
+			-- Get LSP client names
+			local clients = vim.lsp.get_clients()
 			if next(clients) == nil then
-				return msg
+				return "  No servers"
 			end
-			for _, client in ipairs(clients) do
-				local filetypes = client.config.filetypes
-				if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-					return "  " .. client.name
+
+			for _, client in pairs(clients) do
+				table.insert(buf_client_names, client.name)
+			end
+
+			-- Get nvim-lint linters
+			local lint_ok, lint = pcall(require, "lint")
+			if lint_ok then
+				local linters = lint.linters_by_ft[buf_ft]
+				if linters then
+					if type(linters) == "table" then
+						for _, linter in ipairs(linters) do
+							table.insert(buf_client_names, linter)
+						end
+					elseif type(linters) == "string" then
+						table.insert(buf_client_names, linters)
+					end
 				end
 			end
-			return "  " .. msg
+
+			-- Get conform formatters
+			local conform_ok, conform = pcall(require, "conform")
+			if conform_ok then
+				local formatters = conform.formatters_by_ft[buf_ft]
+				if formatters then
+					for _, formatter in ipairs(formatters) do
+						table.insert(buf_client_names, formatter)
+					end
+				end
+			end
+
+			-- Remove duplicates
+			local hash = {}
+			local unique_clients = {}
+			for _, v in ipairs(buf_client_names) do
+				if not hash[v] then
+					table.insert(unique_clients, v)
+					hash[v] = true
+				end
+			end
+
+			if #unique_clients == 0 then
+				return "  No servers"
+			end
+
+			return "  " .. table.concat(unique_clients, ", ")
 		end
 
 		local dia = {

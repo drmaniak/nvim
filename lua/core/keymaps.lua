@@ -52,6 +52,10 @@ map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, "Repeat T search", { 
 -- Neo-Tree --
 map("n", "<C-n>", ":Neotree toggle filesystem reveal left<CR>", "Neo-Tree Toggle")
 
+-- Buffer Control --
+map("n", "<A-c>", ":BufferClose<CR>", "Close Buffer", { noremap = true })
+map("n", "<A-d>", ":BufferDelete<CR>", "Delete Buffer", { noremap = true })
+
 -- Buffer Movement --
 map("n", "<A-,>", ":BufferPrevious<CR>", "Previous Buffer", { noremap = true })
 map("n", "<A-.>", ":BufferNext<CR>", "Next Buffer", { noremap = true })

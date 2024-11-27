@@ -10,6 +10,7 @@ local servers = {
 	"pyright",
 	"marksman",
 	"html",
+	"yamlls",
 }
 
 local tools = {
@@ -22,6 +23,7 @@ local tools = {
 	"ruff",
 	"pydocstyle",
 	"htmlhint",
+	"prettier",
 }
 
 return {
@@ -53,6 +55,19 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
+
+			-- Configure diagnostic display
+			vim.diagnostic.config({
+				severity_sort = true, -- Sort diagnostics in order of severity (Errors before warnings)
+				float = {
+					border = "rounded",
+					severity_sort = true,
+					source = true,
+					header = "Diagnostics",
+					prefix = "",
+				},
+			})
+
 			-- Loop through all servers and set up
 			for _, lsp in ipairs(servers) do
 				lspconfig[lsp].setup({
