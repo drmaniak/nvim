@@ -8,13 +8,28 @@
 
 local map = require("helpers.keys").map -- map signature (mode:str, lhs:str, rhs:str, desc:str, opts:table)
 
+-- Function to wrap a text command in <cmd> ... <CR>
+local function cmd(command)
+	return table.concat({ "<cmd>", command, "<CR>" })
+end
+
 -- Vim commands --
 map("i", "kj", "<ESC>", "", { noremap = true })
-map("i", "jk", "<ESC>", "", { noremap = true })
-map("n", "<Esc>", "<cmd>nohlsearch<CR>", "Clear highlights after searching")
+map("n", "<Esc>", cmd("nohlsearch"), "Clear highlights after searching")
+
+-- Key cursor centered when scrolling
+map("n", "<C-d>", "<C-d>zz", "", { noremap = true, silent = true })
+map("n", "<C-u>", "<C-u>zz", "", { noremap = true, silent = true })
+
+-- better indenting
+map("v", ">", ">gv")
+map("v", "<", "<gv")
+
+-- yanking/pasting improved
 map({ "n", "v" }, "x", '"_x', "Delete character and send to black hole register")
 map({ "n", "v" }, "c", '"_c', "Change selection and send to black hole register")
-
+map("v", "p", '"_dp', "Paste over currently selected text without yanking it")
+map("v", "P", '"_dP', "Paste over currently selected text without yanking it")
 ---------------------
 -- Plugin controls --
 ---------------------
@@ -30,12 +45,13 @@ local telescope_builtin = require("telescope.builtin")
 map("n", "<leader>T", ":Telescope<CR>", "Open Telescope Main")
 map("n", "<leader>ff", telescope_builtin.find_files, "Telescope - Find File")
 map("n", "<leader>fg", telescope_builtin.live_grep, "Telescope - Live Grep")
+map("n", "<leader>fc", telescope_builtin.current_buffer_fuzzy_find, "Telescope - Current buffer fuzzy find")
 map("n", "<leader>fd", telescope_builtin.diagnostics, "Telescope - Diagnostics")
 map("n", "<leader><leader>", telescope_builtin.buffers, "Telescope - Existing Buffers")
 map("n", "<leader>fh", require("telescope").extensions.recent_files.pick, "Telescope - Recent Files")
 map("n", "<leader>fr", require("telescope").extensions.frecency.frecency, "Telescope - Frecent Files")
 map("n", "<leader>gs", telescope_builtin.git_status, "Git Status")
-map("n", "<leader>ft", "<cmd>TodoTelescope <CR>", "Telescope - TODO list")
+map("n", "<leader>ft", cmd("TodoTelescope"), "Telescope - TODO list")
 map("n", "<leader>fk", telescope_builtin.keymaps, "Telescope - Keymaps")
 
 -- Treesitter Textobjects Movement --
@@ -94,6 +110,7 @@ end)
 map("n", "<C-x>p", function()
 	harpoon:list():select(4)
 end)
+
 -- Harpoon Telescope Setup --
 local conf = require("telescope.config").values
 
@@ -152,9 +169,6 @@ end, "Open Harpoon Window")
 map("n", "<leader>th", ":Huez<CR>", "Colorscheme Picker")
 
 -- Window Resizing (via window-nvim)
-local function cmd(command)
-	return table.concat({ "<cmd>", command, "<CR>" })
-end
 
 map("n", "<C-w>m", cmd("WindowsMaximize"), "Maximize current window")
 map("n", "<C-w>mv", cmd("WindowsMaximizeVertically"), "Maximize current window vertically")

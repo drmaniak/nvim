@@ -22,7 +22,9 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.undofile = true
 
 vim.opt.inccommand = "split"
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 7
+vim.opt.sidescrolloff = 7

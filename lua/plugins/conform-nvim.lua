@@ -26,6 +26,7 @@ return {
 				html = { "prettier" },
 				sql = { "sqlfluff", "sql_formatter" },
 				yaml = { "prettier" },
+				json = { "prettier" },
 			},
 
 			-- Specify format on save
