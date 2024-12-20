@@ -8,6 +8,12 @@ M.on_attach = function(client, bufnr)
 		return { buffer = bufnr, desc = "LSP: " .. desc }
 	end
 
+	-- Attach nvim-navic to buffer
+	local navic = require("nvim-navic")
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+
 	-- Assign keymaps when LSP attaches to a buffer --
 	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))

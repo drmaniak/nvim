@@ -42,11 +42,18 @@ return {
 			function()
 				return " "
 			end,
-			color = { bg = colors.black, fg = "#80A7EA" },
+			color = { bg = "NONE", fg = "NONE" },
 		}
 
 		local filename = {
 			"filename",
+			color = { bg = "#80A7EA", fg = "#242735" },
+			separator = { left = "", right = "" },
+		}
+
+		local filepath = {
+			"filename",
+			path = 1,
 			color = { bg = "#80A7EA", fg = "#242735" },
 			separator = { left = "", right = "" },
 		}
@@ -115,22 +122,20 @@ return {
 			separator = { left = "", right = "" },
 		}
 
-		-- local function getLspName()
-		-- 	local msg = "No Active Lsp"
-		-- 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-		-- 	-- local clients = vim.lsp.get_active_clients()
-		-- 	local clients = vim.lsp.get_clients()
-		-- 	if next(clients) == nil then
-		-- 		return msdg
-		-- 	end
-		-- 	for _, client in ipairs(clients) do
-		-- 		local filetypes = client.config.filetypes
-		-- 		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-		-- 			return "  " .. client.name
-		-- 		end
-		-- 	end
-		-- 	return "  " .. msg
-		-- end
+		local navic = require("nvim-navic")
+
+		local navic_component = {
+			function()
+				return navic.get_location()
+			end,
+			cond = function()
+				return navic.is_available()
+			end,
+			-- color = { fg = "#c97a11", bg = "NONE", gui = "italic,bold" },
+			color = { fg = "#c97a11", bg = "#241a52", gui = "italic,bold" },
+			padding = { left = 2, right = 2 },
+			separator = { left = "", right = "" },
+		}
 
 		local function getLspName()
 			local buf_ft = vim.bo.filetype
@@ -207,7 +212,8 @@ return {
 
 			options = {
 				icons_enabled = true,
-				theme = theme,
+				-- theme = theme,
+				theme = "catppuccin",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
@@ -218,25 +224,22 @@ return {
 				always_divide_middle = true,
 				globalstatus = true,
 				refresh = {
-					statusline = 1000,
+					statusline = 100,
 					-- tabline = 1000,
-					winbar = 1000,
+					winbar = 100,
 				},
 			},
 
 			sections = {
 				lualine_a = {
-					--{ 'mode', fmt = function(str) return str:gsub(str, "  ") end },
 					modes,
 					vim_icons,
-					--{ 'mode', fmt = function(str) return str:sub(1, 1) end },
 				},
-				lualine_b = {
-					space,
-				},
+				lualine_b = { space },
 				lualine_c = {
 
-					filename,
+					space,
+					filepath,
 					filetype,
 					space,
 					branch,
@@ -265,7 +268,13 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			winbar = {},
+			tabline = {},
+			winbar = {
+
+				lualine_a = { space },
+				lualine_b = { navic_component },
+				-- lualine_c = { navic_component },
+			},
 			inactive_winbar = {},
 		})
 	end,
