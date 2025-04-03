@@ -13,6 +13,13 @@ return {
     --   temperature = 0,
     --   max_tokens = 5200
     -- },
+    claude = {
+      endpoint = "https://api.anthropic.com",
+      -- model = "claude-3-5-haiku-20241022",
+      model = "claude-3-7-sonnet-20250219",
+      max_tokens = 15000,
+      -- disable_tools = true,
+    },
     mappings = {
       diff = {
         ours = "cco",
