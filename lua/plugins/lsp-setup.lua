@@ -28,6 +28,7 @@ local tools = {
   "pydocstyle",
   "htmlhint",
   "prettier",
+  "stylua"
 }
 
 return {
