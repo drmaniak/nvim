@@ -12,8 +12,19 @@ return {
 		require("oil").setup({
 			columns = {
 				"icon",
-				-- "size",
-				-- "mtime",
+				{ "size", highlight = "Special" },
+				{ "mtime", highlight = "DiagnosticWarn", format = "%d%b%y %H:%M" },
+			},
+
+			view_options = {
+				case_insensitive = false,
+				sort = {
+					-- sort order can be "asc" or "desc"
+					-- see :help oil-columns to see which columns are sortable
+					{ "mtime", "desc" },
+					{ "type", "asc" },
+					{ "name", "asc" },
+				},
 			},
 
 			skip_confirm_for_simple_edits = true,
